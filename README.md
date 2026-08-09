@@ -8,14 +8,32 @@ A personal static website presenting all numbered presidencies of the United Sta
 - Search by president name
 - Sort by presidential number, name, or birth date
 - Responsive layout for desktop and mobile
-- PNG portrait support
-- Download PNG link on each president card
-- Image placeholders when a portrait has not yet been added
+- Optimized WebP portrait previews for fast browsing
+- Full-resolution PNG originals for visitor downloads
+- Automatic fallback to the full-resolution PNG if a preview has not been created yet
+- Image placeholders when no portrait has been uploaded
 - Plain HTML, CSS, JavaScript, and JSON — no build system required
 
-## Add your portraits
+## Image structure
 
-Place your PNG images in `images/presidents/` using the filenames specified in `data/presidents.json`.
+Portraits are stored in two separate folders:
+
+```text
+images/
+└── presidents/
+    ├── originals/
+    │   ├── 01-george-washington.png
+    │   ├── 02-john-adams.png
+    │   └── ...
+    └── previews/
+        ├── 01-george-washington.webp
+        ├── 02-john-adams.webp
+        └── ...
+```
+
+### Originals
+
+Place the full-resolution PNG artwork in `images/presidents/originals/`.
 
 Examples:
 
@@ -24,19 +42,29 @@ Examples:
 - `16-abraham-lincoln.png`
 - `47-donald-trump.png`
 
-If an image is missing, the site displays a neutral placeholder. When the PNG is present, visitors can use the **Download PNG** link on the president card to download the original image file.
+The **Download Full-Resolution PNG** link on each president card points to the file in this folder.
 
-## Image folder
+### Previews
 
-The repository includes:
+Place an optimized WebP preview in `images/presidents/previews/` using the same base filename.
 
-```text
-images/
-└── presidents/
-    └── .gitkeep
-```
+Examples:
 
-The `.gitkeep` file exists only so GitHub retains the otherwise-empty `images/presidents/` directory. It can remain after portrait files are added or be deleted later.
+- `01-george-washington.webp`
+- `02-john-adams.webp`
+- `16-abraham-lincoln.webp`
+- `47-donald-trump.webp`
+
+A preview around 600–800 pixels wide is recommended for normal card display. The browser displays the preview at the card size, while the original PNG remains untouched for downloading.
+
+If a WebP preview is missing, the site automatically tries the full-resolution PNG instead. If neither file exists, a neutral placeholder is displayed.
+
+## Adding a new portrait
+
+1. Upload the full-resolution PNG to `images/presidents/originals/`.
+2. Optionally create a smaller WebP copy and upload it to `images/presidents/previews/`.
+3. Use the exact base filename already defined for that president in `data/presidents.json`.
+4. GitHub Pages will redeploy automatically after the commit is published.
 
 ## Run locally
 
