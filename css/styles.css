@@ -47,11 +47,11 @@ input:focus, select:focus { outline: 3px solid rgba(20, 38, 61, .18); border-col
 .president-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(235px, 1fr)); gap: 22px; }
 .president-card { overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); }
 .portrait-wrap { position: relative; aspect-ratio: 4 / 5; background: #d8d1c5; overflow: hidden; }
-.portrait-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.portrait-fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; background: radial-gradient(circle at 50% 28%, #f2eee6, #c7beb0); color: #62594f; }
+.portrait-wrap img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; background: #d8d1c5; }
+.portrait-fallback { position: absolute; z-index: 0; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; background: radial-gradient(circle at 50% 28%, #f2eee6, #c7beb0); color: #62594f; }
 .portrait-fallback strong { display: block; font-size: 3.2rem; font-weight: 500; }
 .portrait-fallback span { display: block; margin-top: 8px; font: .72rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .1em; }
-.presidential-number { position: absolute; top: 12px; left: 12px; min-width: 38px; height: 38px; display: grid; place-items: center; padding: 0 9px; border-radius: 20px; background: rgba(20, 38, 61, .93); color: white; font: 700 .9rem Arial, sans-serif; }
+.presidential-number { position: absolute; z-index: 2; top: 12px; left: 12px; min-width: 38px; height: 38px; display: grid; place-items: center; padding: 0 9px; border-radius: 20px; background: rgba(20, 38, 61, .93); color: white; font: 700 .9rem Arial, sans-serif; }
 .card-body { padding: 18px 18px 20px; }
 .card-body h2 { margin: 0 0 13px; color: var(--navy); font-size: 1.35rem; line-height: 1.15; }
 .facts { display: grid; gap: 8px; margin: 0; }
