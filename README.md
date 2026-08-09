@@ -8,21 +8,35 @@ A personal static website presenting all numbered presidencies of the United Sta
 - Search by president name
 - Sort by presidential number, name, or birth date
 - Responsive layout for desktop and mobile
-- Image placeholders that automatically disappear behind your own portraits
+- PNG portrait support
+- Download PNG link on each president card
+- Image placeholders when a portrait has not yet been added
 - Plain HTML, CSS, JavaScript, and JSON — no build system required
 
 ## Add your portraits
 
-Place your JPG images in `images/presidents/` using the filenames already specified in `data/presidents.json`.
+Place your PNG images in `images/presidents/` using the filenames specified in `data/presidents.json`.
 
 Examples:
 
-- `01-george-washington.jpg`
-- `02-john-adams.jpg`
-- `16-abraham-lincoln.jpg`
-- `47-donald-trump.jpg`
+- `01-george-washington.png`
+- `02-john-adams.png`
+- `16-abraham-lincoln.png`
+- `47-donald-trump.png`
 
-If an image is missing, the site displays a neutral placeholder.
+If an image is missing, the site displays a neutral placeholder. When the PNG is present, visitors can use the **Download PNG** link on the president card to download the original image file.
+
+## Image folder
+
+The repository includes:
+
+```text
+images/
+└── presidents/
+    └── .gitkeep
+```
+
+The `.gitkeep` file exists only so GitHub retains the otherwise-empty `images/presidents/` directory. It can remain after portrait files are added or be deleted later.
 
 ## Run locally
 
@@ -36,4 +50,4 @@ Then visit `http://localhost:8000`.
 
 ## GitHub Pages
 
-After the repository is published, enable GitHub Pages from the repository's **Settings → Pages** and deploy from the `main` branch root.
+Enable GitHub Pages from the repository's **Settings → Pages** and deploy from the `main` branch root.
