@@ -59,6 +59,9 @@ input:focus, select:focus { outline: 3px solid rgba(20, 38, 61, .18); border-col
 .fact dt { color: var(--muted); font: 700 .75rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
 .fact dd { margin: 0; }
 
+.download-link { display: inline-block; margin-top: 16px; padding: 9px 12px; border: 1px solid var(--navy); border-radius: 5px; color: var(--navy); text-decoration: none; font: 700 .78rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+.download-link:hover, .download-link:focus { background: var(--navy); color: white; }
+
 .empty { grid-column: 1 / -1; padding: 48px 24px; text-align: center; border: 1px dashed var(--line); color: var(--muted); }
 .site-footer { padding: 24px 16px 42px; text-align: center; color: var(--muted); font: .85rem Arial, sans-serif; }
 
