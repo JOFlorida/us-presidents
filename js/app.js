@@ -10,7 +10,8 @@ function initials(name) {
 
 function originalImagePath(president) {
   const filename = president.image.split('/').pop();
-  return `./images/presidents/originals/${filename}`;
+  const version = president.number === 7 ? '?v=2' : '';
+  return `./images/presidents/originals/${filename}${version}`;
 }
 
 function cardTemplate(president) {
