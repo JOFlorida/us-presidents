@@ -8,15 +8,32 @@ function initials(name) {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join('');
 }
 
+function imagePaths(president) {
+  const filename = president.image.split('/').pop();
+  const baseName = filename.replace(/\.png$/i, '');
+
+  return {
+    preview: `images/presidents/previews/${baseName}.webp`,
+    original: `images/presidents/originals/${baseName}.png`
+  };
+}
+
 function cardTemplate(president) {
+  const paths = imagePaths(president);
+
   return `
     <article class="president-card">
       <div class="portrait-wrap">
         <div class="portrait-fallback" aria-hidden="true">
           <div><strong>${initials(president.name)}</strong><span>Add your portrait</span></div>
         </div>
-        <img src="${president.image}" alt="Portrait of ${president.name}" loading="lazy"
-             onerror="this.style.display='none'">
+        <img
+          src="${paths.preview}"
+          data-original="${paths.original}"
+          alt="Portrait of ${president.name}"
+          loading="lazy"
+          decoding="async"
+          onerror="if (!this.dataset.triedOriginal) { this.dataset.triedOriginal='1'; this.src=this.dataset.original; } else { this.style.display='none'; }">
         <div class="presidential-number" title="Presidential number">${president.number}</div>
       </div>
       <div class="card-body">
@@ -26,7 +43,7 @@ function cardTemplate(president) {
           <div class="fact"><dt>Died</dt><dd>${president.deathDateDisplay}</dd></div>
           <div class="fact"><dt>Term</dt><dd>${president.term}</dd></div>
         </dl>
-        <a class="download-link" href="${president.image}" download>Download PNG</a>
+        <a class="download-link" href="${paths.original}" download>Download Full-Resolution PNG</a>
       </div>
     </article>`;
 }
