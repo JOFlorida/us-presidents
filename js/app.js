@@ -26,6 +26,7 @@ function cardTemplate(president) {
           <div class="fact"><dt>Died</dt><dd>${president.deathDateDisplay}</dd></div>
           <div class="fact"><dt>Term</dt><dd>${president.term}</dd></div>
         </dl>
+        <a class="download-link" href="${president.image}" download>Download PNG</a>
       </div>
     </article>`;
 }
