@@ -8,18 +8,13 @@ function initials(name) {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join('');
 }
 
-function imagePaths(president) {
+function originalImagePath(president) {
   const filename = president.image.split('/').pop();
-  const baseName = filename.replace(/\.png$/i, '');
-
-  return {
-    preview: `images/presidents/previews/${baseName}.webp`,
-    original: `images/presidents/originals/${baseName}.png`
-  };
+  return `./images/presidents/originals/${filename}`;
 }
 
 function cardTemplate(president) {
-  const paths = imagePaths(president);
+  const image = originalImagePath(president);
 
   return `
     <article class="president-card">
@@ -28,13 +23,11 @@ function cardTemplate(president) {
           <div><strong>${initials(president.name)}</strong><span>Add your portrait</span></div>
         </div>
         <img
-          src="${paths.preview}"
-          data-original="${paths.original}"
+          class="president-portrait"
+          src="${image}"
           alt="Portrait of ${president.name}"
           loading="lazy"
-          decoding="async"
-          onload="this.previousElementSibling.style.display='none'"
-          onerror="if (!this.dataset.triedOriginal) { this.dataset.triedOriginal='1'; this.src=this.dataset.original; } else { this.style.display='none'; }">
+          decoding="async">
         <div class="presidential-number" title="Presidential number">${president.number}</div>
       </div>
       <div class="card-body">
@@ -44,9 +37,30 @@ function cardTemplate(president) {
           <div class="fact"><dt>Died</dt><dd>${president.deathDateDisplay}</dd></div>
           <div class="fact"><dt>Term</dt><dd>${president.term}</dd></div>
         </dl>
-        <a class="download-link" href="${paths.original}" download>Download Full-Resolution PNG</a>
+        <a class="download-link" href="${image}" download>Download Full-Resolution PNG</a>
       </div>
     </article>`;
+}
+
+function wirePortraitEvents() {
+  document.querySelectorAll('.president-portrait').forEach(img => {
+    const fallback = img.previousElementSibling;
+
+    img.addEventListener('load', () => {
+      img.classList.add('is-loaded');
+      if (fallback) fallback.hidden = true;
+    });
+
+    img.addEventListener('error', () => {
+      img.remove();
+      if (fallback) fallback.hidden = false;
+    });
+
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.add('is-loaded');
+      if (fallback) fallback.hidden = true;
+    }
+  });
 }
 
 function render() {
@@ -65,9 +79,11 @@ function render() {
   grid.innerHTML = filtered.length
     ? filtered.map(cardTemplate).join('')
     : '<p class="empty">No presidents match your search.</p>';
+
+  wirePortraitEvents();
 }
 
-fetch('data/presidents.json')
+fetch('./data/presidents.json?v=20260809-1841', { cache: 'no-store' })
   .then(response => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return response.json();
