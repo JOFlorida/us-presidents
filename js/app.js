@@ -33,6 +33,7 @@ function cardTemplate(president) {
           alt="Portrait of ${president.name}"
           loading="lazy"
           decoding="async"
+          onload="this.previousElementSibling.style.display='none'"
           onerror="if (!this.dataset.triedOriginal) { this.dataset.triedOriginal='1'; this.src=this.dataset.original; } else { this.style.display='none'; }">
         <div class="presidential-number" title="Presidential number">${president.number}</div>
       </div>
