@@ -1,13 +1,33 @@
 <!doctype html>
+<!--
+  ============================================================================
+  DEVELOPER INFORMATION
+  ============================================================================
+  Project:   Presidents of the United States
+  File:      index.html
+  Developer: JOFlorida
+  Purpose:   Defines the primary page structure for the presidential gallery.
+             The page provides the site header, search and sorting controls,
+             president-card container, footer, and links to the site's CSS
+             and JavaScript resources.
+  ============================================================================
+-->
 <html lang="en">
 <head>
+  <!-- Document metadata and responsive browser configuration. -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A personal gallery of the Presidents of the United States.">
   <title>Presidents of the United States</title>
+
+  <!-- Main site stylesheet. -->
   <link rel="stylesheet" href="css/styles.css?v=20260809-1841">
 </head>
 <body>
+  <!--
+    Site Header
+    Introduces the gallery and establishes the site's primary visual identity.
+  -->
   <header class="site-header">
     <div class="header-inner">
       <p class="eyebrow">A Personal Presidential Gallery</p>
@@ -16,12 +36,21 @@
     </div>
   </header>
 
+  <!--
+    Main Content
+    Contains visitor controls and the dynamically generated president cards.
+  -->
   <main class="page-shell">
+    <!--
+      Search and Sort Controls
+      Allow visitors to filter presidents by name and change the display order.
+    -->
     <section class="controls" aria-label="President filters">
       <label class="search-box">
         <span>Search</span>
         <input id="search" type="search" placeholder="Search by president name…" autocomplete="off">
       </label>
+
       <label>
         <span>Sort</span>
         <select id="sort">
@@ -32,14 +61,25 @@
       </label>
     </section>
 
+    <!-- Displays the number of presidencies matching the current filter. -->
     <p id="result-count" class="result-count" aria-live="polite"></p>
+
+    <!--
+      President Grid
+      JavaScript inserts the individual president cards into this container.
+    -->
     <section id="presidents" class="president-grid" aria-label="U.S. Presidents"></section>
   </main>
 
+  <!-- Site footer and reference-site identification. -->
   <footer class="site-footer">
     <p>Personal U.S. Presidents reference site.</p>
   </footer>
 
+  <!--
+    Application Script
+    Loads presidential data, builds cards, and handles search and sorting.
+  -->
   <script src="js/app.js?v=20260809-1841"></script>
 </body>
 </html>
