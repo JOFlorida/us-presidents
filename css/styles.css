@@ -1,3 +1,21 @@
+/*
+  ============================================================================
+  DEVELOPER INFORMATION
+  ============================================================================
+  Project:   Presidents of the United States
+  File:      css/styles.css
+  Developer: JOFlorida
+  Purpose:   Defines the visual design, responsive layout, typography, colors,
+             president cards, portrait presentation, controls, and footer for
+             the presidential gallery.
+  ============================================================================
+*/
+
+/*
+  Theme Variables
+  Centralized colors and shadow values make the site's visual theme easier to
+  maintain and keep styling consistent across components.
+*/
 :root {
   --paper: #f5f0e7;
   --ink: #1d2530;
@@ -9,8 +27,19 @@
   --shadow: 0 10px 28px rgba(20, 38, 61, .10);
 }
 
-* { box-sizing: border-box; }
+/*
+  Global Box Model
+  Makes element sizing more predictable by including padding and borders in
+  declared width and height values.
+*/
+* {
+  box-sizing: border-box;
+}
 
+/*
+  Page Foundation
+  Establishes the base typography, foreground color, and paper-like background.
+*/
 body {
   margin: 0;
   min-height: 100vh;
@@ -19,53 +48,291 @@ body {
   background: var(--paper);
 }
 
+/*
+  Site Header
+  Provides the dark presidential banner and accent border across the page top.
+*/
 .site-header {
   background: linear-gradient(135deg, #102238, #203b59);
   color: white;
   border-bottom: 5px solid var(--accent);
 }
 
+/*
+  Shared Content Width
+  Keeps the header and main page content aligned within the same maximum width.
+*/
 .header-inner,
 .page-shell {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
 }
 
-.header-inner { padding: 58px 0 48px; }
-.eyebrow { margin: 0 0 8px; text-transform: uppercase; letter-spacing: .16em; font: 700 .78rem Arial, sans-serif; opacity: .78; }
-h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 4.6rem); line-height: .98; font-weight: 600; }
-.intro { max-width: 720px; margin: 18px 0 0; font-size: 1.1rem; line-height: 1.6; color: #e8edf2; }
+/* Header typography and spacing. */
+.header-inner {
+  padding: 58px 0 48px;
+}
 
-.page-shell { padding: 34px 0 52px; }
-.controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; margin-bottom: 12px; }
-.controls label { display: grid; gap: 7px; font: 700 .78rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-.search-box { flex: 1 1 320px; }
-input, select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); font: 1rem Arial, sans-serif; }
-input:focus, select:focus { outline: 3px solid rgba(20, 38, 61, .18); border-color: var(--navy); }
-.result-count { margin: 16px 0 22px; color: var(--muted); font: .92rem Arial, sans-serif; }
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font: 700 .78rem Arial, sans-serif;
+  opacity: .78;
+}
 
-.president-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(235px, 1fr)); gap: 22px; }
-.president-card { overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 9px; box-shadow: var(--shadow); }
-.portrait-wrap { position: relative; aspect-ratio: 4 / 5; background: #d8d1c5; overflow: hidden; }
-.portrait-wrap img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; background: #d8d1c5; }
-.portrait-fallback { position: absolute; z-index: 0; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; background: radial-gradient(circle at 50% 28%, #f2eee6, #c7beb0); color: #62594f; }
-.portrait-fallback strong { display: block; font-size: 3.2rem; font-weight: 500; }
-.portrait-fallback span { display: block; margin-top: 8px; font: .72rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .1em; }
-.presidential-number { position: absolute; z-index: 2; top: 12px; left: 12px; min-width: 38px; height: 38px; display: grid; place-items: center; padding: 0 9px; border-radius: 20px; background: rgba(20, 38, 61, .93); color: white; font: 700 .9rem Arial, sans-serif; }
-.card-body { padding: 18px 18px 20px; }
-.card-body h2 { margin: 0 0 13px; color: var(--navy); font-size: 1.35rem; line-height: 1.15; }
-.facts { display: grid; gap: 8px; margin: 0; }
-.fact { display: grid; grid-template-columns: 62px 1fr; gap: 8px; font-size: .91rem; line-height: 1.35; }
-.fact dt { color: var(--muted); font: 700 .75rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
-.fact dd { margin: 0; }
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  line-height: .98;
+  font-weight: 600;
+}
 
-.download-link { display: inline-block; margin-top: 16px; padding: 9px 12px; border: 1px solid var(--navy); border-radius: 5px; color: var(--navy); text-decoration: none; font: 700 .78rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
-.download-link:hover, .download-link:focus { background: var(--navy); color: white; }
+.intro {
+  max-width: 720px;
+  margin: 18px 0 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e8edf2;
+}
 
-.empty { grid-column: 1 / -1; padding: 48px 24px; text-align: center; border: 1px dashed var(--line); color: var(--muted); }
-.site-footer { padding: 24px 16px 42px; text-align: center; color: var(--muted); font: .85rem Arial, sans-serif; }
+/*
+  Main Page Layout
+  Adds vertical spacing around the searchable presidential gallery.
+*/
+.page-shell {
+  padding: 34px 0 52px;
+}
 
+/*
+  Search and Sort Controls
+  Uses a flexible layout so the controls wrap cleanly on narrower screens.
+*/
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+.controls label {
+  display: grid;
+  gap: 7px;
+  font: 700 .78rem Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+
+.search-box {
+  flex: 1 1 320px;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font: 1rem Arial, sans-serif;
+}
+
+/* Visible keyboard and input focus state for accessibility. */
+input:focus,
+select:focus {
+  outline: 3px solid rgba(20, 38, 61, .18);
+  border-color: var(--navy);
+}
+
+/* Displays the number of matching presidencies above the card grid. */
+.result-count {
+  margin: 16px 0 22px;
+  color: var(--muted);
+  font: .92rem Arial, sans-serif;
+}
+
+/*
+  President Card Grid
+  Automatically creates as many card columns as the available width permits.
+*/
+.president-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+  gap: 22px;
+}
+
+/* Individual president card container. */
+.president-card {
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  box-shadow: var(--shadow);
+}
+
+/*
+  Portrait Area
+  Maintains a consistent 4:5 portrait ratio and clips images to the card frame.
+*/
+.portrait-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: #d8d1c5;
+  overflow: hidden;
+}
+
+.portrait-wrap img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #d8d1c5;
+}
+
+/*
+  Missing-Portrait Fallback
+  Displays initials and a placeholder message when a portrait cannot be loaded.
+*/
+.portrait-fallback {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 28%, #f2eee6, #c7beb0);
+  color: #62594f;
+}
+
+.portrait-fallback strong {
+  display: block;
+  font-size: 3.2rem;
+  font-weight: 500;
+}
+
+.portrait-fallback span {
+  display: block;
+  margin-top: 8px;
+  font: .72rem Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+/* Presidential number badge shown over the portrait. */
+.presidential-number {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 12px;
+  min-width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0 9px;
+  border-radius: 20px;
+  background: rgba(20, 38, 61, .93);
+  color: white;
+  font: 700 .9rem Arial, sans-serif;
+}
+
+/*
+  Card Content
+  Styles the president name, biographical facts, and supporting text.
+*/
+.card-body {
+  padding: 18px 18px 20px;
+}
+
+.card-body h2 {
+  margin: 0 0 13px;
+  color: var(--navy);
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.facts {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 8px;
+  font-size: .91rem;
+  line-height: 1.35;
+}
+
+.fact dt {
+  color: var(--muted);
+  font: 700 .75rem Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.fact dd {
+  margin: 0;
+}
+
+/*
+  Full-Resolution Download Link
+  Gives visitors direct access to the original PNG portrait file.
+*/
+.download-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 9px 12px;
+  border: 1px solid var(--navy);
+  border-radius: 5px;
+  color: var(--navy);
+  text-decoration: none;
+  font: 700 .78rem Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.download-link:hover,
+.download-link:focus {
+  background: var(--navy);
+  color: white;
+}
+
+/* Message displayed when no presidents match the current search. */
+.empty {
+  grid-column: 1 / -1;
+  padding: 48px 24px;
+  text-align: center;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+}
+
+/* Footer presentation. */
+.site-footer {
+  padding: 24px 16px 42px;
+  text-align: center;
+  color: var(--muted);
+  font: .85rem Arial, sans-serif;
+}
+
+/*
+  Responsive Adjustments
+  Reduces header spacing and switches the gallery to a single column on small
+  mobile screens.
+*/
 @media (max-width: 560px) {
-  .header-inner { padding: 42px 0 36px; }
-  .president-grid { grid-template-columns: 1fr; }
+  .header-inner {
+    padding: 42px 0 36px;
+  }
+
+  .president-grid {
+    grid-template-columns: 1fr;
+  }
 }
